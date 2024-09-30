@@ -29,8 +29,8 @@ codes = [
     1279,
     4480]
 
-prefix = "cs-22-"
-semester = '4'
+prefix = "cs-24-"
+semester = '3'
 
 mailpostfix = "@student.aau.dk"  # changed from @cs.aau.dk during summer '21
 
@@ -42,7 +42,11 @@ mails = []
 
 for group in groups:
     for x in range(group[1], group[2] + 1):
-        mails.append(group[0] + '-' + semester + '-' + f'{x:02d}')  # mails have leading zero
+        if(x == 12):
+            mails.append(group[0] + '-' + semester + '-' + '13')  # mails have leading zero
+        else:
+            mails.append(group[0] + '-' + semester + '-' + f'{x:02d}')  # mails have leading zero
+            
 
 shuffle(mails)
 

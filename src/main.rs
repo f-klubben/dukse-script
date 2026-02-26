@@ -18,6 +18,11 @@ fn main() -> anyhow::Result<()> {
     .with_prompt("Mængde af Datalogi grupper")
     .interact_text()?;
 
+    let ixdgroups: u32 = Input::with_theme(&ColorfulTheme::default())
+    .with_prompt("Mængde af Interaktions design grupper")
+    .interact_text()?;
+
+
     let mailsw: String = Input::with_theme(&ColorfulTheme::default())
     .with_prompt("Software email (%d|%D placeholder)")
     .with_initial_text("cs-24-sw-3-%D@student.aau.dk")
@@ -27,6 +32,12 @@ fn main() -> anyhow::Result<()> {
     .with_prompt("Datalogi email (%d|%D placeholder)")
     .with_initial_text("cs-24-dat-3-%D@student.aau.dk")
     .interact_text()?;
+
+    let mailixd: String = Input::with_theme(&ColorfulTheme::default())
+    .with_prompt("Interaktionsdesign email (%d|%D placeholder)")
+    .with_initial_text("cs-24-ixd-3-%D@student.aau.dk")
+    .interact_text()?;
+
 
     let startdate: NaiveDate = Input::with_theme(&ColorfulTheme::default())
     .with_prompt("Start date")
@@ -46,6 +57,13 @@ fn main() -> anyhow::Result<()> {
     for i in 1..=datgroups {
         groups.push(Group{
             email: maildat.replace("%d", &format!("{}", i)).replace("%D", &format!("{:02}", i)),
+            used: 0
+        });
+    }
+    // Generate IxD Groups:
+    for i in 1..=ixdgroups {
+        groups.push(Group{
+            email: mailixd.replace("%d", &format!("{}", i)).replace("%D", &format!("{:02}", i)),
             used: 0
         });
     }
